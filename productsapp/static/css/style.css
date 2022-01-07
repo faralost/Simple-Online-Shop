@@ -1,0 +1,10 @@
+.mylink{
+    color: blue;
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+pre {
+    font-family: inherit;
+}

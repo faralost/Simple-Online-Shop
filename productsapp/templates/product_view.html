@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}Товар{% endblock %}
 
 {% block content %}
     <table class="table">
@@ -9,16 +9,18 @@
             <th scope="col">Товар</th>
             <th scope="col">Цена</th>
             <th scope="col">Категория</th>
+            <th scope="col">Остаток</th>
         </tr>
         </thead>
         <tbody>
-        {% for product in products %}
             <tr>
-                <td><a class="mylink" href="{% url 'product_view' product.pk %}">{{ product.name.title }}</a></td>
+                <td>{{ product.name.title }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.get_category_display}}</td>
+                <td>{{ product.balance}}</td>
             </tr>
-        {% endfor %}
         </tbody>
     </table>
+    <h5>Описание:</h5>
+    <p><pre>{{ product.description }}</pre></p>
 {% endblock %}
