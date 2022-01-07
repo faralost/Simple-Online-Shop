@@ -9,6 +9,7 @@
             <th scope="col">Товар</th>
             <th scope="col">Цена</th>
             <th scope="col">Категория</th>
+            <th scope="col">Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -16,7 +17,10 @@
             <tr>
                 <td><a class="mylink" href="{% url 'product_view' product.pk %}">{{ product.name.title }}</a></td>
                 <td>{{ product.price }}</td>
-                <td>{{ product.get_category_display}}</td>
+                <td>{{ product.get_category_display }}</td>
+                <td><a class="mylink" href="{% url "product_update" product.pk %}">Редактировать</a>
+                    &nbsp;<a class="mylink" href="{% url 'product_delete' product.pk %}">Удалить</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
