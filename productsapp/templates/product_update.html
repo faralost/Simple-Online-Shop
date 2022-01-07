@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение товара{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% include "partial/form.html" with button_text="Изменить"  %}
+        </form>
+    </div>
+{% endblock %}
