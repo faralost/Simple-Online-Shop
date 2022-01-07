@@ -21,6 +21,8 @@
             </tr>
         </tbody>
     </table>
+    {% if product.description %}
     <h5>Описание:</h5>
     <p><pre>{{ product.description }}</pre></p>
+    {% endif %}
 {% endblock %}

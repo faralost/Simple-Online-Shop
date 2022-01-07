@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление задачи{% endblock %}
+
+{% block add-product-nav %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% include 'partial/form.html' with button_text='Добавить' %}
+        </form>
+    </div>
+{% endblock %}

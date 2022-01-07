@@ -22,16 +22,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                {% block task-list %}
+                {% block add-product-nav %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">#</a>
+                        <a class="nav-link" href="{% url 'product_add' %}">Добавить товар</a>
                     </li>
                 {% endblock %}
-                {% block add-task-nav %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">#</a>
-                    </li>
-                {% endblock %}
+{#                {% block ok-nav %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">#</a>#}
+{#                    </li>#}
+{#                {% endblock %}#}
             </ul>
         </div>
     </div>
