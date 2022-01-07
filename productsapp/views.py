@@ -6,12 +6,11 @@ from productsapp.models import Product
 
 def index(request):
     query = request.GET.get('query')
+    products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
     if query:
         products = Product.objects.filter(name__icontains=query).order_by('category', 'name')
-        return render(request, 'index.html', {'products': products})
-    else:
-        products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
-        return render(request, 'index.html', {'products': products})
+        return render(request, 'index.html', {'products': products, 'categories': Product.CATEGORY_CHOICES})
+    return render(request, 'index.html', {'products': products, 'categories': Product.CATEGORY_CHOICES})
 
 
 def product_view(request, pk):
@@ -62,3 +61,14 @@ def product_delete(request, pk):
     elif request.method == 'POST':
         product.delete()
         return redirect('index')
+
+
+def products_category(request, category):
+    query = request.GET.get('query')
+    products = Product.objects.filter(category=category).order_by('name')
+    if query:
+        products = Product.objects.filter(category=category, name__icontains=query).order_by('name')
+        return render(request, 'products_categories.html',
+                      {'categories': Product.CATEGORY_CHOICES, 'products': products})
+    return render(request, 'products_categories.html',
+                  {'categories': Product.CATEGORY_CHOICES, 'products': products, 'category': category})
