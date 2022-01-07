@@ -3,6 +3,15 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
+    <br>
+    <form method="get">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" name="query" class="form-control">
+            <div class="form-text">поиск товара по названию</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Искать</button>
+    </form>
     <table class="table">
         <thead>
         <tr>

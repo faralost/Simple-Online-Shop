@@ -5,11 +5,13 @@ from productsapp.models import Product
 
 
 def index(request):
-    if request.method == 'GET':
-        products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
+    query = request.GET.get('query')
+    if query:
+        products = Product.objects.filter(name__icontains=query).order_by('category', 'name')
         return render(request, 'index.html', {'products': products})
     else:
-        pass
+        products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
+        return render(request, 'index.html', {'products': products})
 
 
 def product_view(request, pk):
