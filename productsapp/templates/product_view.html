@@ -7,7 +7,7 @@
         <a class="nav-link" href="{% url "product_update" product.pk %}">Редактировать</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Удалить</a>
+        <a class="nav-link" href="{% url 'product_delete' product.pk %}">Удалить</a>
     </li>
 {% endblock %}
 
