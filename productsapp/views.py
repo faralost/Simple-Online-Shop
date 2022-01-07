@@ -6,7 +6,7 @@ from productsapp.models import Product
 
 def index(request):
     if request.method == 'GET':
-        products = Product.objects.all()
+        products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
         return render(request, 'index.html', {'products': products})
     else:
         pass
@@ -25,11 +25,5 @@ def product_add(request):
         form = ProductForm(data=request.POST)
         if form.is_valid():
             new_product = form.save()
-            # task = form.cleaned_data.get('task')
-            # status = form.cleaned_data.get('status')
-            # deadline = form.cleaned_data.get('deadline')
-            # task_description = form.cleaned_data.get('task_description')
-            # new_task = Task.objects.create(task=task, status=status, deadline=deadline or None,
-            #                                task_description=task_description or None)
             return redirect('product_view', pk=new_product.pk)
         return render(request, 'product_add.html', {'form': form})
