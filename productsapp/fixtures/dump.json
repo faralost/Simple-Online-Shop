@@ -1,0 +1,134 @@
+[
+{
+  "model": "productsapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "asdasdasd",
+    "description": "dasdasdasdas\r\ndasdasdasld;aksldkalskd\r\n       fkjsdkfjsld\r\nsdfsdf",
+    "category": "drinks",
+    "balance": 6,
+    "price": "545.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 4,
+  "fields": {
+    "name": "вода бонаква",
+    "description": "горная родниковая",
+    "category": "drinks",
+    "balance": 3,
+    "price": "29.99"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 7,
+  "fields": {
+    "name": "лепешки",
+    "description": "наисвежайшие из тандыра",
+    "category": "food",
+    "balance": 100,
+    "price": "25.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 8,
+  "fields": {
+    "name": "мясо говядина",
+    "description": "халал",
+    "category": "food",
+    "balance": 15,
+    "price": "1234.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 9,
+  "fields": {
+    "name": "куртка",
+    "description": "",
+    "category": "clothes",
+    "balance": 2,
+    "price": "5769.99"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "война и мир",
+    "description": "Толстой",
+    "category": "books",
+    "balance": 1,
+    "price": "300.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 11,
+  "fields": {
+    "name": "библия",
+    "description": "",
+    "category": "books",
+    "balance": 0,
+    "price": "666.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 12,
+  "fields": {
+    "name": "футболка",
+    "description": "",
+    "category": "clothes",
+    "balance": 23,
+    "price": "500.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 13,
+  "fields": {
+    "name": "атака титанов",
+    "description": "манга",
+    "category": "books",
+    "balance": 121,
+    "price": "250.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 15,
+  "fields": {
+    "name": "брюки",
+    "description": "летние",
+    "category": "clothes",
+    "balance": 4,
+    "price": "12313.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 16,
+  "fields": {
+    "name": "sdasdasda",
+    "description": "dasdasd",
+    "category": "other",
+    "balance": 3,
+    "price": "123.32"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 19,
+  "fields": {
+    "name": "SDSFSsdsds",
+    "description": "",
+    "category": "other",
+    "balance": 2,
+    "price": "12.00"
+  }
+}
+]
