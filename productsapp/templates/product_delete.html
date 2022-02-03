@@ -10,7 +10,7 @@
         <form action="{% url 'product_delete' product.pk %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Удалить</button><br>
-            <br><p><a class="mylink" href="{% url "index" %}">Не удалять</a></p>
+            <br><p><a class="btn btn-primary" href="{% url "index" %}">Не удалять</a></p>
         </form>
     </div>
 {% endblock %}

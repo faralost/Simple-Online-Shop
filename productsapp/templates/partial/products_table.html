@@ -21,11 +21,23 @@
         <tr>
             <td><a class="mylink" href="{% url 'product_view' product.pk %}">{{ product.name.title }}</a></td>
             <td>{{ product.price }}</td>
-                <td><a class="mylink" href="{% url 'products_category' product.category %}">{{ product.get_category_display }}</a></td>
-            <td><a class="mylink" href="{% url "product_update" product.pk %}">Редактировать</a>
-                &nbsp;<a class="mylink" href="{% url 'product_delete' product.pk %}">Удалить</a>
+            <td><a class="mylink"
+                   href="{% url 'products_category' product.category %}">{{ product.get_category_display }}</a></td>
+            <td><a href="{% url "product_update" product.pk %}" class="mylink"><i
+                    class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Редактировать"></i></a>
+                &nbsp;<a class="mylink" href="{% url 'product_delete' product.pk %}"><i class="bi bi-trash"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                   title="Удалить"></i></a>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+
+{#<a href="{% url 'record_update' record.pk %}" class="card-link"><i#}
+{#        class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top"#}
+{#        title="Редактировать запись"></i></a>#}
+{#<a href="{% url 'record_delete' record.pk %}" class="card-link"><i class="bi bi-trash"#}
+{#                                                                   data-bs-toggle="tooltip" data-bs-placement="top"#}
+{#                                                                   title="Удалить запись"></i></a>#}
