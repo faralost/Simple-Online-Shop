@@ -5,10 +5,10 @@ from productsapp.models import Product
 
 
 def index(request):
-    query = request.GET.get('query')
+    search = request.GET.get('search')
     products = Product.objects.filter(balance__gt=0).order_by('category', 'name')
-    if query:
-        products = Product.objects.filter(name__icontains=query).order_by('category', 'name')
+    if search:
+        products = Product.objects.filter(name__icontains=search).order_by('category', 'name')
         return render(request, 'index.html', {'products': products, 'categories': Product.CATEGORY_CHOICES})
     return render(request, 'index.html', {'products': products, 'categories': Product.CATEGORY_CHOICES})
 

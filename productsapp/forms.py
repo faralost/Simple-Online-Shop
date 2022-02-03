@@ -11,3 +11,7 @@ class ProductForm(forms.ModelForm):
         widgets = {
             'description': widgets.Textarea(attrs={'rows': 5, 'cols': 30})
         }
+
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label='поиск товаров')
