@@ -8,4 +8,8 @@
 
 {% block content %}
     {% include 'partial/products_table.html' %}
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock %}
