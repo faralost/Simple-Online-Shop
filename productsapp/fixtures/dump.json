@@ -130,5 +130,181 @@
     "balance": 2,
     "price": "12.00"
   }
+},
+{
+  "model": "productsapp.product",
+  "pk": 21,
+  "fields": {
+    "name": "something",
+    "description": "",
+    "category": "other",
+    "balance": 23,
+    "price": "123.23"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 22,
+  "fields": {
+    "name": "another1",
+    "description": "another1",
+    "category": "other",
+    "balance": 10,
+    "price": "35.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 23,
+  "fields": {
+    "name": "another2",
+    "description": "another2",
+    "category": "other",
+    "balance": 20,
+    "price": "50.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 24,
+  "fields": {
+    "name": "another3",
+    "description": "another3",
+    "category": "other",
+    "balance": 30,
+    "price": "90.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 25,
+  "fields": {
+    "name": "drink1",
+    "description": "drink1",
+    "category": "drinks",
+    "balance": 15,
+    "price": "15.50"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 26,
+  "fields": {
+    "name": "drink2",
+    "description": "",
+    "category": "drinks",
+    "balance": 25,
+    "price": "25.60"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 27,
+  "fields": {
+    "name": "drink3",
+    "description": "drink3",
+    "category": "drinks",
+    "balance": 36,
+    "price": "36.90"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 28,
+  "fields": {
+    "name": "food 1",
+    "description": "food 1",
+    "category": "food",
+    "balance": 45,
+    "price": "45.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 29,
+  "fields": {
+    "name": "food 2",
+    "description": "",
+    "category": "food",
+    "balance": 55,
+    "price": "55.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 30,
+  "fields": {
+    "name": "food 3",
+    "description": "doof sfsd fad fad fsdf",
+    "category": "food",
+    "balance": 66,
+    "price": "66.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 31,
+  "fields": {
+    "name": "book1",
+    "description": "book1",
+    "category": "books",
+    "balance": 9,
+    "price": "90.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 32,
+  "fields": {
+    "name": "book 2",
+    "description": "book 2",
+    "category": "books",
+    "balance": 10,
+    "price": "100.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 33,
+  "fields": {
+    "name": "book 3book",
+    "description": "book 3",
+    "category": "books",
+    "balance": 11,
+    "price": "110.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 34,
+  "fields": {
+    "name": "clothes 1",
+    "description": "clothes 1",
+    "category": "clothes",
+    "balance": 13,
+    "price": "1300.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 35,
+  "fields": {
+    "name": "clothes 2",
+    "description": "",
+    "category": "clothes",
+    "balance": 14,
+    "price": "1499.00"
+  }
+},
+{
+  "model": "productsapp.product",
+  "pk": 36,
+  "fields": {
+    "name": "clothes 3",
+    "description": "clothes 3",
+    "category": "clothes",
+    "balance": 15,
+    "price": "1599.99"
+  }
 }
 ]
