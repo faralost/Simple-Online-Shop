@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, UpdateView
 
 from productsapp.base import SearchListView
 from productsapp.forms import ProductForm
@@ -35,28 +35,10 @@ class ProductAddView(CreateView):
     model = Product
 
 
-def product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'GET':
-        form = ProductForm(initial={
-            'name': product.name,
-            'description': product.description,
-            'category': product.category,
-            'balance': product.balance,
-            'price': product.price
-        })
-        return render(request, 'product_update.html', {'product': product, 'form': form})
-    elif request.method == 'POST':
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            product.name = form.cleaned_data.get('name')
-            product.description = form.cleaned_data.get('description')
-            product.category = form.cleaned_data.get('category')
-            product.balance = form.cleaned_data.get('balance')
-            product.price = form.cleaned_data.get('price')
-            product.save()
-            return redirect('product_view', pk=product.pk)
-        return render(request, 'product_update.html', {'product': product, 'form': form})
+class ProductUpdate(UpdateView):
+    form_class = ProductForm
+    template_name = 'product_update.html'
+    model = Product
 
 
 def product_delete(request, pk):

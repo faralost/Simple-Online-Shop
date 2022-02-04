@@ -4,7 +4,7 @@
 
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "product_view" product.pk %}">Вернуться к товару</a>
+        <a class="nav-link" href="{{ product.get_absolute_url }}">Вернуться к товару</a>
     </li>
 {% endblock %}
 
