@@ -60,6 +60,7 @@ class ProductsByCategory(ListView):
     model = Product
     template_name = 'index.html'
     context_object_name = 'products'
+    paginate_by = 10
 
     def get_queryset(self):
         return Product.objects.filter(category=self.kwargs['category'], balance__gt=0).order_by('name')

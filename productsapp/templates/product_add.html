@@ -2,7 +2,11 @@
 
 {% block title %}{{ title }}{% endblock %}
 
-{% block nav %}{% endblock %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ request.META.HTTP_REFERER }}">Вернуться</a>
+    </li>
+{% endblock %}
 
 {% block content %}
     <div class="container">
