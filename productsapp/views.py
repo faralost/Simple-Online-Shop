@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
 from productsapp.base import SearchListView
 from productsapp.forms import ProductForm
@@ -14,6 +13,7 @@ class ProductsIndexView(SearchListView):
     paginate_by = 10
     ordering = ['category', 'name']
     search_fields = ['name__icontains']
+    extra_context = {'title': 'Главная'}
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -29,31 +29,44 @@ class ProductView(DetailView):
     model = Product
     template_name = 'product_view.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductView, self).get_context_data(**kwargs)
+        context['title'] = self.object.name
+        return context
+
 
 class ProductAddView(CreateView):
     form_class = ProductForm
     template_name = 'product_add.html'
     model = Product
+    extra_context = {'title': 'Добавление товара'}
 
 
 class ProductUpdate(UpdateView):
     form_class = ProductForm
     template_name = 'product_update.html'
     model = Product
+    extra_context = {'title': 'Редактирование товара'}
 
 
 class ProductDelete(DeleteView):
     template_name = 'product_delete.html'
     model = Product
     success_url = reverse_lazy('index')
+    extra_context = {'title': 'Удаление товара'}
 
 
-def products_category(request, category):
-    query = request.GET.get('query')
-    products = Product.objects.filter(category=category).order_by('name')
-    if query:
-        products = Product.objects.filter(category=category, name__icontains=query).order_by('name')
-        return render(request, 'products_categories.html',
-                      {'categories': Product.CATEGORY_CHOICES, 'products': products})
-    return render(request, 'products_categories.html',
-                  {'categories': Product.CATEGORY_CHOICES, 'products': products, 'category': category})
+class ProductsByCategory(ListView):
+    model = Product
+    template_name = 'index.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return Product.objects.filter(category=self.kwargs['category'], balance__gt=0).order_by('name')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductsByCategory, self).get_context_data(**kwargs)
+        category = self.kwargs.get('category')
+        context['title'] = dict(Product.CATEGORY_CHOICES).get(category)
+        context['categories'] = Product.CATEGORY_CHOICES
+        return context
