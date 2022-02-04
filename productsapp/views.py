@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import DetailView, CreateView
 
 from productsapp.base import SearchListView
 from productsapp.forms import ProductForm
@@ -23,21 +24,15 @@ class ProductsIndexView(SearchListView):
         return context
 
 
-def product_view(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_view.html', {'product': product})
+class ProductView(DetailView):
+    model = Product
+    template_name = 'product_view.html'
 
 
-def product_add(request):
-    if request.method == 'GET':
-        form = ProductForm()
-        return render(request, 'product_add.html', {'form': form})
-    else:
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            new_product = form.save()
-            return redirect('product_view', pk=new_product.pk)
-        return render(request, 'product_add.html', {'form': form})
+class ProductAddView(CreateView):
+    form_class = ProductForm
+    template_name = 'product_add.html'
+    model = Product
 
 
 def product_update(request, pk):

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -15,6 +16,13 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.pk}. {self.name}: {self.price}"
+
+    def get_absolute_url(self):
+        return reverse('product_view', kwargs={'pk': self.pk})
+
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        return super(Product, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'products'

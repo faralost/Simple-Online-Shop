@@ -12,7 +12,7 @@
     <tbody>
     {% for product in products %}
         <tr>
-            <td><a class="mylink" href="{% url 'product_view' product.pk %}">{{ product.name.title }}</a></td>
+            <td><a class="mylink" href="{{ product.get_absolute_url }}">{{ product.name.title }}</a></td>
             <td>{{ product.price }}</td>
             <td><a class="mylink"
                    href="{% url 'products_category' product.category %}">{{ product.get_category_display }}</a></td>
