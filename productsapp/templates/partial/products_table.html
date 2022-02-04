@@ -20,8 +20,14 @@
                     class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Редактировать"></i></a>
                 &nbsp;<a class="mylink" href="{% url 'product_delete' product.pk %}"><i class="bi bi-trash"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                   title="Удалить"></i></a>
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-placement="top"
+                                                                                        title="Удалить"></i></a>
+                <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">в корзину</button>
+                    <br>
+                </form>
             </td>
         </tr>
     {% endfor %}

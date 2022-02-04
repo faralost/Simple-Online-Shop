@@ -8,9 +8,9 @@ from productsapp.models import Product
 
 class ProductsIndexView(SearchListView):
     model = Product
-    template_name = 'index.html'
+    template_name = 'product/index.html'
     context_object_name = 'products'
-    paginate_by = 10
+    paginate_by = 6
     ordering = ['category', 'name']
     search_fields = ['name__icontains']
     extra_context = {'title': 'Главная'}
@@ -27,7 +27,7 @@ class ProductsIndexView(SearchListView):
 
 class ProductView(DetailView):
     model = Product
-    template_name = 'product_view.html'
+    template_name = 'product/product_view.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProductView, self).get_context_data(**kwargs)
@@ -37,20 +37,20 @@ class ProductView(DetailView):
 
 class ProductAddView(CreateView):
     form_class = ProductForm
-    template_name = 'product_add.html'
+    template_name = 'product/product_add.html'
     model = Product
     extra_context = {'title': 'Добавление товара'}
 
 
 class ProductUpdate(UpdateView):
     form_class = ProductForm
-    template_name = 'product_update.html'
+    template_name = 'product/product_update.html'
     model = Product
     extra_context = {'title': 'Редактирование товара'}
 
 
 class ProductDelete(DeleteView):
-    template_name = 'product_delete.html'
+    template_name = 'product/product_delete.html'
     model = Product
     success_url = reverse_lazy('index')
     extra_context = {'title': 'Удаление товара'}
@@ -58,9 +58,9 @@ class ProductDelete(DeleteView):
 
 class ProductsByCategory(ListView):
     model = Product
-    template_name = 'index.html'
+    template_name = 'product/index.html'
     context_object_name = 'products'
-    paginate_by = 10
+    paginate_by = 6
 
     def get_queryset(self):
         return Product.objects.filter(category=self.kwargs['category'], balance__gt=0).order_by('name')

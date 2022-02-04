@@ -22,16 +22,22 @@
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ product.name.title }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.get_category_display}}</td>
-                <td>{{ product.balance}}</td>
-            </tr>
+        <tr>
+            <td>{{ product.name.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.get_category_display }}</td>
+            <td>{{ product.balance }}</td>
+        </tr>
         </tbody>
     </table>
     {% if product.description %}
-    <h5>Описание:</h5>
-    <p><pre>{{ product.description.capitalize }}</pre></p>
+        <h5>Описание:</h5>
+        <p>
+        <pre>{{ product.description.capitalize }}</pre></p>
     {% endif %}
+    <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Добавить в корзину</button>
+        <br>
+    </form>
 {% endblock %}
