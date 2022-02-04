@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from productsapp.base import SearchListView
 from productsapp.forms import ProductForm
@@ -41,13 +42,10 @@ class ProductUpdate(UpdateView):
     model = Product
 
 
-def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'GET':
-        return render(request, 'product_delete.html', {'product': product})
-    elif request.method == 'POST':
-        product.delete()
-        return redirect('index')
+class ProductDelete(DeleteView):
+    template_name = 'product_delete.html'
+    model = Product
+    success_url = reverse_lazy('index')
 
 
 def products_category(request, category):
