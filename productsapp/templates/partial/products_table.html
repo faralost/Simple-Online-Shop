@@ -25,6 +25,7 @@
                                                                                         title="Удалить"></i></a>
                 <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
                     {% csrf_token %}
+                     <input type="hidden" name="next" value="{{ request.path }}">
                     <button type="submit" class="btn btn-warning">в корзину</button>
                     <br>
                 </form>

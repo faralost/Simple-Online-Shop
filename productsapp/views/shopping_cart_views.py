@@ -1,7 +1,9 @@
 from django.db.models import F, Sum
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 
 from productsapp.models import ShoppingCart, Product
 
@@ -16,7 +18,8 @@ class ShoppingCartAdd(View):
         elif shopping_cart.filter(product_id=product.pk) and shopping_cart.get(
                 product_id=product.pk).quantity < product.balance:
             shopping_cart.filter(product_id=product.pk).update(quantity=F('quantity') + 1)
-        return redirect('index')
+        nexttt = request.POST.get('next', '/')
+        return redirect(nexttt)
 
 
 class ShoppingCartDetailView(ListView):
@@ -32,5 +35,15 @@ class ShoppingCartDetailView(ListView):
         return context
 
     def get_total(self):
-        total = ShoppingCart.objects.annotate(mult=F('quantity')*F('product__price')).aggregate(sum=Sum('mult'))
+        total = ShoppingCart.objects.annotate(mult=F('quantity') * F('product__price')).aggregate(sum=Sum('mult'))
         return total
+
+
+class ShoppingCartDeleteView(DeleteView):
+    model = ShoppingCart
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('shopping_cart_view')

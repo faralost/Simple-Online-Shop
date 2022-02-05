@@ -9,6 +9,9 @@
     <li class="nav-item">
         <a class="nav-link" href="{% url 'product_delete' product.pk %}">Удалить</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'shopping_cart_view' %}">Корзина</a>
+    </li>
 {% endblock %}
 
 {% block content %}
@@ -37,6 +40,7 @@
     {% endif %}
     <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
         <button type="submit" class="btn btn-warning">Добавить в корзину</button>
         <br>
     </form>
