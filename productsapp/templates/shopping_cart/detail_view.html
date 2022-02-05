@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block nav %}
+    {% include 'partial/nav.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="mt-3">
+  <table class="table table-success table-striped">
+      <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Количество</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in shopping_cart %}
+    <tr>
+      <th scope="row">{{ item.product.name }}</th>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.product.price }}</td>
+      <td>{{ item.amount }}</td>
+    </tr>
+  {% endfor %}
+  <tr class="table-danger">
+    <th scope="row">ИТОГО: {{ total.sum }}</th>
+  </tr>
+  </tbody>
+
+  </table>
+</div>
+{% endblock %}

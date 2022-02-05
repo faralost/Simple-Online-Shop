@@ -35,6 +35,10 @@ class ShoppingCart(models.Model):
                                 verbose_name='Товар в корзине')
     quantity = models.PositiveIntegerField(default=1, verbose_name='Количество товара в корзине')
 
+    @property
+    def amount(self):
+        return self.quantity * self.product.price
+
     def __str__(self):
         return f"{self.product.name}: {self.quantity}"
 
