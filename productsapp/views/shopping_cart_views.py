@@ -27,7 +27,6 @@ class ShoppingCartDetailView(CreateView):
     form_class = OrderForm
     model = Order
     template_name = 'shopping_cart/detail_view.html'
-    # context_object_name = 'shopping_cart'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ShoppingCartDetailView, self).get_context_data(**kwargs)
@@ -37,31 +36,23 @@ class ShoppingCartDetailView(CreateView):
         context['total'] = self.get_total()
         return context
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.get_order()
+        return super().form_valid(form)
+
+    def get_order(self):
+        for item in ShoppingCart.objects.all():
+            order_list = OrderProduct.objects.create(order_id=self.object.pk, product_id=item.product_id,
+                                                     quantity=item.quantity)
+        return order_list
+
     def get_total(self):
         total = ShoppingCart.objects.annotate(mult=F('quantity') * F('product__price')).aggregate(sum=Sum('mult'))
         return total
 
     def get_success_url(self):
         return reverse('shopping_cart_view')
-
-
-# class OrderAdd(FormView):
-#     template_name = 'shopping_cart/detail_view.html'
-#     form_class = OrderForm
-#     model = Order
-#
-#     def post(self, request, *args, **kwargs):
-#         form = self.get_form()
-#         if form.is_valid():
-#             form.save()
-#             # self.get_order()
-#         return super().post(request, *args, **kwargs)
-#
-#     def get_success_url(self):
-#         return reverse('shopping_cart_view')
-#
-#     def get_order(self):
-#         pass
 
 
 class ShoppingCartDeleteView(DeleteView):
