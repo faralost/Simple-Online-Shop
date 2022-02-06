@@ -1,11 +1,12 @@
 from django.db.models import F, Sum
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, DeleteView
+from django.views.generic.edit import FormMixin, FormView
 
-from productsapp.models import ShoppingCart, Product
+from productsapp.forms import OrderForm
+from productsapp.models import ShoppingCart, Product, Order
 
 
 class ShoppingCartAdd(View):
@@ -32,11 +33,27 @@ class ShoppingCartDetailView(ListView):
         context['title'] = 'Корзина'
         context['categories'] = Product.CATEGORY_CHOICES
         context['total'] = self.get_total()
+        context['form'] = OrderForm()
         return context
 
     def get_total(self):
         total = ShoppingCart.objects.annotate(mult=F('quantity') * F('product__price')).aggregate(sum=Sum('mult'))
         return total
+
+
+class OrderAdd(FormView):
+    template_name = 'shopping_cart/detail_view.html'
+    form_class = OrderForm
+    model = Order
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            form.save()
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('shopping_cart_view')
 
 
 class ShoppingCartDeleteView(DeleteView):

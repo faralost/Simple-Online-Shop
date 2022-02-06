@@ -37,7 +37,12 @@
                 <th scope="row">ИТОГО: {{ total.sum }}</th>
             </tr>
             </tbody>
-
         </table>
+    </div>
+
+    <div class="container">
+        <form action="{% url 'order_add_view' %}" method="post">
+            {% include 'partial/form.html' with button_text='Заказать' %}
+        </form>
     </div>
 {% endblock %}

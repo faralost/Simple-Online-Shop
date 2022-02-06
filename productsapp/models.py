@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
@@ -46,3 +47,33 @@ class ShoppingCart(models.Model):
         db_table = 'shopping_cart'
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
+
+
+class Order(models.Model):
+    customer_name = models.CharField(max_length=40, verbose_name='Имя покупателя')
+    phone_number = models.CharField(max_length=15, verbose_name='Номер телефона', validators=(
+        RegexValidator(regex="^\(?\+([9]{2}?[6])\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$",
+                       message="Неправильный формат номера"),))
+    address = models.CharField(max_length=100, verbose_name='Адрес')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    products = models.ManyToManyField("productsapp.Product", related_name="orders", through="productsapp.OrderProduct",
+                                      through_fields=("order", "product"))
+
+    def __str__(self):
+        return f"{self.customer_name}"
+
+    class Meta:
+        db_table = 'order'
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+
+class OrderProduct(models.Model):
+    product = models.ForeignKey('productsapp.Product', on_delete=models.CASCADE, related_name='product_orders',
+                                verbose_name='Товар')
+    order = models.ForeignKey('productsapp.Order', on_delete=models.CASCADE, related_name='order_products',
+                              verbose_name='Заказ')
+    quantity = models.PositiveIntegerField(verbose_name='Количество заказа')
+
+    def __str__(self):
+        return f"{self.product} | {self.order}: {self.quantity}"
