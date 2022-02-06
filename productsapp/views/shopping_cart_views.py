@@ -3,10 +3,10 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, DeleteView
-from django.views.generic.edit import FormMixin, FormView
+from django.views.generic.edit import FormView, CreateView
 
 from productsapp.forms import OrderForm
-from productsapp.models import ShoppingCart, Product, Order
+from productsapp.models import ShoppingCart, Product, Order, OrderProduct
 
 
 class ShoppingCartAdd(View):
@@ -23,37 +23,45 @@ class ShoppingCartAdd(View):
         return redirect(nexttt)
 
 
-class ShoppingCartDetailView(ListView):
-    model = ShoppingCart
+class ShoppingCartDetailView(CreateView):
+    form_class = OrderForm
+    model = Order
     template_name = 'shopping_cart/detail_view.html'
-    context_object_name = 'shopping_cart'
+    # context_object_name = 'shopping_cart'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ShoppingCartDetailView, self).get_context_data(**kwargs)
+        context['shopping_cart'] = ShoppingCart.objects.all()
         context['title'] = 'Корзина'
         context['categories'] = Product.CATEGORY_CHOICES
         context['total'] = self.get_total()
-        context['form'] = OrderForm()
         return context
 
     def get_total(self):
         total = ShoppingCart.objects.annotate(mult=F('quantity') * F('product__price')).aggregate(sum=Sum('mult'))
         return total
 
-
-class OrderAdd(FormView):
-    template_name = 'shopping_cart/detail_view.html'
-    form_class = OrderForm
-    model = Order
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            form.save()
-        return super().post(request, *args, **kwargs)
-
     def get_success_url(self):
         return reverse('shopping_cart_view')
+
+
+# class OrderAdd(FormView):
+#     template_name = 'shopping_cart/detail_view.html'
+#     form_class = OrderForm
+#     model = Order
+#
+#     def post(self, request, *args, **kwargs):
+#         form = self.get_form()
+#         if form.is_valid():
+#             form.save()
+#             # self.get_order()
+#         return super().post(request, *args, **kwargs)
+#
+#     def get_success_url(self):
+#         return reverse('shopping_cart_view')
+#
+#     def get_order(self):
+#         pass
 
 
 class ShoppingCartDeleteView(DeleteView):
