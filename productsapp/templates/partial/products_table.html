@@ -25,7 +25,11 @@
                                                                                         title="Удалить"></i></a>
                 <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
                     {% csrf_token %}
-                     <input type="hidden" name="next" value="{{ request.path }}">
+                    {% if is_paginated %}
+                        <input type="hidden" name="next" value="{{ request.path }}?page={{ page_obj.number }}">
+                    {% else %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                    {% endif %}
                     <button type="submit" class="btn btn-warning">в корзину</button>
                     <br>
                 </form>
