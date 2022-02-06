@@ -2,8 +2,8 @@ from django.db.models import F, Sum
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import ListView, DeleteView
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic import DeleteView
+from django.views.generic.edit import CreateView
 
 from productsapp.forms import OrderForm
 from productsapp.models import ShoppingCart, Product, Order, OrderProduct
@@ -39,12 +39,17 @@ class ShoppingCartDetailView(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         self.get_order()
+        self.delete_shopping_cart()
         return super().form_valid(form)
+
+    def delete_shopping_cart(self):
+        ShoppingCart.objects.all().delete()
 
     def get_order(self):
         for item in ShoppingCart.objects.all():
             order_list = OrderProduct.objects.create(order_id=self.object.pk, product_id=item.product_id,
                                                      quantity=item.quantity)
+            Product.objects.filter(id=item.product_id).update(balance=F('balance')-item.quantity)
         return order_list
 
     def get_total(self):
