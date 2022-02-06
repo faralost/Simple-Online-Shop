@@ -1,17 +1,6 @@
 [
 {
   "model": "productsapp.product",
-  "pk": 3,
-  "fields": {
-    "name": "asdasdasd",
-    "description": "dasdasdasdas\r\ndasdasdasld;aksldkalskd\r\n       fkjsdkfjsld\r\nsdfsdf",
-    "category": "drinks",
-    "balance": 6,
-    "price": "545.00"
-  }
-},
-{
-  "model": "productsapp.product",
   "pk": 16,
   "fields": {
     "name": "sdasdasda",
@@ -28,7 +17,7 @@
     "name": "sdfssdsds",
     "description": "",
     "category": "other",
-    "balance": 2,
+    "balance": 1,
     "price": "12.00"
   }
 },
@@ -39,7 +28,7 @@
     "name": "something",
     "description": "",
     "category": "other",
-    "balance": 23,
+    "balance": 20,
     "price": "123.23"
   }
 },
@@ -72,7 +61,7 @@
     "name": "another3",
     "description": "another3",
     "category": "other",
-    "balance": 30,
+    "balance": 29,
     "price": "90.00"
   }
 },
@@ -83,7 +72,7 @@
     "name": "drink1",
     "description": "drink1",
     "category": "drinks",
-    "balance": 15,
+    "balance": 13,
     "price": "15.50"
   }
 },
@@ -94,7 +83,7 @@
     "name": "drink2",
     "description": "",
     "category": "drinks",
-    "balance": 25,
+    "balance": 24,
     "price": "25.60"
   }
 },
@@ -116,7 +105,7 @@
     "name": "food 1",
     "description": "food 1",
     "category": "food",
-    "balance": 45,
+    "balance": 42,
     "price": "45.00"
   }
 },
@@ -160,7 +149,7 @@
     "name": "book 2",
     "description": "book 2",
     "category": "books",
-    "balance": 10,
+    "balance": 2,
     "price": "100.00"
   }
 },
@@ -171,7 +160,7 @@
     "name": "book 3book",
     "description": "book 3",
     "category": "books",
-    "balance": 11,
+    "balance": 3,
     "price": "110.00"
   }
 },
@@ -182,7 +171,7 @@
     "name": "clothes 1",
     "description": "clothes 1",
     "category": "clothes",
-    "balance": 13,
+    "balance": 9,
     "price": "1300.00"
   }
 },
@@ -193,7 +182,7 @@
     "name": "clothes 2",
     "description": "",
     "category": "clothes",
-    "balance": 14,
+    "balance": 12,
     "price": "1499.00"
   }
 },
@@ -237,8 +226,183 @@
     "name": "test one",
     "description": "",
     "category": "books",
-    "balance": 2,
+    "balance": 1,
     "price": "12.00"
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 16,
+  "fields": {
+    "customer_name": "naruto",
+    "phone_number": "+996702482325",
+    "address": "Hidden Leaf Village",
+    "created_at": "2022-02-06T10:59:32.815Z"
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 18,
+  "fields": {
+    "customer_name": "satoru godjo",
+    "phone_number": "+996702482325",
+    "address": "jujutsu 89",
+    "created_at": "2022-02-06T11:10:47.329Z"
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 19,
+  "fields": {
+    "customer_name": "zenitsu",
+    "phone_number": "+996555223344",
+    "address": "agatsuma 46",
+    "created_at": "2022-02-06T11:43:40.446Z"
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 20,
+  "fields": {
+    "customer_name": "Tandjiro Camado",
+    "phone_number": "+996500669966",
+    "address": "Demon Slayer",
+    "created_at": "2022-02-06T12:09:13.209Z"
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 28,
+  "fields": {
+    "product": 32,
+    "order": 18,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 29,
+  "fields": {
+    "product": 40,
+    "order": 18,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 30,
+  "fields": {
+    "product": 34,
+    "order": 18,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 31,
+  "fields": {
+    "product": 19,
+    "order": 19,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 32,
+  "fields": {
+    "product": 21,
+    "order": 19,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 33,
+  "fields": {
+    "product": 25,
+    "order": 19,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 34,
+  "fields": {
+    "product": 26,
+    "order": 19,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 35,
+  "fields": {
+    "product": 35,
+    "order": 19,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 36,
+  "fields": {
+    "product": 28,
+    "order": 19,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 37,
+  "fields": {
+    "product": 32,
+    "order": 20,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 38,
+  "fields": {
+    "product": 35,
+    "order": 20,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 39,
+  "fields": {
+    "product": 34,
+    "order": 20,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 40,
+  "fields": {
+    "product": 28,
+    "order": 20,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 41,
+  "fields": {
+    "product": 25,
+    "order": 20,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 42,
+  "fields": {
+    "product": 24,
+    "order": 20,
+    "quantity": 1
   }
 }
 ]
