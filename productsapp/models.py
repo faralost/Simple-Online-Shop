@@ -16,7 +16,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Цена товара')
 
     def __str__(self):
-        return f"{self.pk}. {self.name}: {self.price}"
+        return f"{self.name}"
 
     def get_absolute_url(self):
         return reverse('product_view', kwargs={'pk': self.pk})

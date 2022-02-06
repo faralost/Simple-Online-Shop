@@ -24,8 +24,8 @@
                 <tr>
                     <th scope="row">{{ item.product.name }}</th>
                     <td>{{ item.quantity }}</td>
-                    <td>{{ item.product.price }}</td>
-                    <td>{{ item.amount }}</td>
+                    <td>{{ item.product.price|floatformat:2 }}</td>
+                    <td>{{ item.amount|floatformat:2 }}</td>
                     <td>
                         <form action="{% url 'shopping_cart_delete_view' item.pk %}" method="GET">
                             <button type="submit" class="btn btn-info">Удалить</button>
@@ -35,7 +35,7 @@
                 </tr>
             {% endfor %}
             <tr class="table-danger">
-                <th scope="row">ИТОГО: {{ total.sum }}</th>
+                <th scope="row">ИТОГО: {{ total.sum|floatformat:2 }} сом</th>
             </tr>
             </tbody>
         </table>
