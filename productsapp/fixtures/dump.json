@@ -231,6 +231,30 @@
   }
 },
 {
+  "model": "productsapp.shoppingcart",
+  "pk": 39,
+  "fields": {
+    "product": 32,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.shoppingcart",
+  "pk": 44,
+  "fields": {
+    "product": 39,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.shoppingcart",
+  "pk": 48,
+  "fields": {
+    "product": 34,
+    "quantity": 4
+  }
+},
+{
   "model": "productsapp.order",
   "pk": 16,
   "fields": {
