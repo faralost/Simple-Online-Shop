@@ -68,3 +68,10 @@ class ShoppingCartDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('shopping_cart_view')
+
+    def delete(self, *args, **kwargs):
+        quantity = ShoppingCart.objects.filter(pk=self.kwargs['pk']).update(quantity=F('quantity') - 1)
+        self.object = self.get_object()
+        if self.object.quantity >= quantity:
+            return redirect('shopping_cart_view')
+        return super(ShoppingCartDeleteView, self).delete(*args, **kwargs)
