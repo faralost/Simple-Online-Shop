@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    История заказов
+{% endblock %}
+
+{% block content %}
+    <h2>История ваших заказов</h2>
+    {% for order in orders %}
+        <div class="card">
+            <div class="card-header">
+                Имя заказчика: {{ order.customer_name.title }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">Номер телеофона: {{ order.phone_number }}</p>
+                <p class="card-text">Адрес доставки: {{ order.address }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                Дата заказа: {{ order.created_at }}
+            </div>
+        </div>
+        <br>
+    {% empty %}
+        <p>Вы пока не оформили ни одного заказа...</p>
+    {% endfor %}
+
+{% endblock %}

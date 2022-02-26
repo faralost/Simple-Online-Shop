@@ -1,8 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView
 from django.views.generic.edit import CreateView
 
 from productsapp.forms import OrderForm
@@ -38,6 +39,7 @@ class ShoppingCartDetailView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
+        self.object.user = self.request.user
         self.get_order()
         self.delete_shopping_cart()
         return super().form_valid(form)
@@ -75,3 +77,12 @@ class ShoppingCartDeleteView(DeleteView):
         if self.object.quantity >= quantity:
             return redirect('productsapp:shopping_cart_view')
         return super(ShoppingCartDeleteView, self).delete(*args, **kwargs)
+
+
+class UserOrdersView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'shopping_cart/user_orders.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

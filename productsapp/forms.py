@@ -14,13 +14,13 @@ class ProductForm(forms.ModelForm):
 
 
 class SimpleSearchForm(forms.Form):
-    search = forms.CharField(max_length=100, required=False, label='поиск товаров')
+    search = forms.CharField(max_length=100, required=False, label='')
 
 
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        exclude = ['products']
+        exclude = ['products', 'user']
         widgets = {
             'phone_number': widgets.Input(attrs={'placeholder': '+996XXXXXXXXX'})
         }

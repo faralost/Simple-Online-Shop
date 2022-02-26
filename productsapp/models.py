@@ -58,7 +58,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     products = models.ManyToManyField("productsapp.Product", related_name="orders", through="productsapp.OrderProduct",
                                       through_fields=("order", "product"))
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users', verbose_name='Пользователи',
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', verbose_name='Пользователь',
                              null=True, blank=True)
 
     def __str__(self):
