@@ -57,7 +57,7 @@ class ShoppingCartDetailView(CreateView):
         return total
 
     def get_success_url(self):
-        return reverse('shopping_cart_view')
+        return reverse('productsapp:shopping_cart_view')
 
 
 class ShoppingCartDeleteView(DeleteView):
@@ -67,11 +67,11 @@ class ShoppingCartDeleteView(DeleteView):
         return self.delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('shopping_cart_view')
+        return reverse('productsapp:shopping_cart_view')
 
     def delete(self, *args, **kwargs):
         quantity = ShoppingCart.objects.filter(pk=self.kwargs['pk']).update(quantity=F('quantity') - 1)
         self.object = self.get_object()
         if self.object.quantity >= quantity:
-            return redirect('shopping_cart_view')
+            return redirect('productsapp:shopping_cart_view')
         return super(ShoppingCartDeleteView, self).delete(*args, **kwargs)

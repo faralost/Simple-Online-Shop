@@ -1,4 +1,3 @@
-from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
@@ -19,7 +18,7 @@ class Product(models.Model):
         return f"{self.name}"
 
     def get_absolute_url(self):
-        return reverse('product_view', kwargs={'pk': self.pk})
+        return reverse('productsapp:product_view', kwargs={'pk': self.pk})
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
@@ -51,9 +50,7 @@ class ShoppingCart(models.Model):
 
 class Order(models.Model):
     customer_name = models.CharField(max_length=40, verbose_name='Имя покупателя')
-    phone_number = models.CharField(max_length=15, verbose_name='Номер телефона', validators=(
-        RegexValidator(regex="^\(?\+([9]{2}?[6])\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$",
-                       message="Неправильный формат номера"),))
+    phone_number = models.CharField(max_length=15, verbose_name='Номер телефона')
     address = models.CharField(max_length=100, verbose_name='Адрес')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     products = models.ManyToManyField("productsapp.Product", related_name="orders", through="productsapp.OrderProduct",

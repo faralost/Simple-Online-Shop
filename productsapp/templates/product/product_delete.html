@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container">
         <h2>Вы уверены что хотите удалить товар: "{{ product.name }}"?</h2><br>
-        <form action="{% url 'product_delete' product.pk %}" method="POST">
+        <form action="{% url 'productsapp:product_delete' product.pk %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Удалить</button><br>
             <br><p><a class="btn btn-primary" href="{{ request.META.HTTP_REFERER }}">Не удалять</a></p>

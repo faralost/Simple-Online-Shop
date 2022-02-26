@@ -4,13 +4,13 @@
 
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "product_update" product.pk %}">Редактировать</a>
+        <a class="nav-link" href="{% url "productsapp:product_update" product.pk %}">Редактировать</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'product_delete' product.pk %}">Удалить</a>
+        <a class="nav-link" href="{% url 'productsapp:product_delete' product.pk %}">Удалить</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'shopping_cart_view' %}">Корзина</a>
+        <a class="nav-link" href="{% url 'productsapp:shopping_cart_view' %}">Корзина</a>
     </li>
 {% endblock %}
 
@@ -38,7 +38,7 @@
         <p>
         <pre>{{ product.description.capitalize }}</pre></p>
     {% endif %}
-    <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
+    <form action="{% url 'productsapp:adding_to_shopping_cart' product.pk %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}">
         <button type="submit" class="btn btn-warning">Добавить в корзину</button>

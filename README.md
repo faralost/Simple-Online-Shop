@@ -29,7 +29,8 @@ pip install -r requirements.txt
 
 Загрузите фикстурные статьи командой
 ```bash
-./manage.py loaddata dump.json
+1) ./manage.py loaddata auth_dump.json
+2) ./manage.py loaddata dump.json
 ```
 
 Чтобы запустить сервер выполните:

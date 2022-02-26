@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Главная</a>
+        <a class="navbar-brand" href="{% url 'productsapp:index' %}">Главная</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,19 @@
                 {% endblock %}
             </ul>
             {% include 'partial/simple_search.html' with form=search_form %}
+            &nbsp;
+            {% if user.is_authenticated %}
+                <span>Привет, <a class="mylink"
+                                 href="{% url 'accounts:detail_profile' user.profile.slug %}">{{ user.username }}!</a></span>
+                <a href="{% url 'accounts:logout' %}" class="nav-link">Выход</a>
+            {% else %}
+                {% block login-nav-link %}
+                    <a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}" class="nav-link">Вход</a>
+                {% endblock %}
+                {% block registration-nav-link %}
+                    <a href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}" class="nav-link">Регистрация</a>
+                {% endblock %}
+            {% endif %}
         </div>
     </div>
 </nav>

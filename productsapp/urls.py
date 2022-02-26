@@ -4,6 +4,8 @@ from productsapp.views.product_views import ProductsIndexView, ProductView, Prod
     ProductDelete, ProductsByCategory
 from productsapp.views.shopping_cart_views import ShoppingCartAdd, ShoppingCartDetailView, ShoppingCartDeleteView
 
+app_name = 'productsapp'
+
 urlpatterns = [
     path('', ProductsIndexView.as_view(), name='index'),
     path('product/<int:pk>/', ProductView.as_view(), name='product_view'),

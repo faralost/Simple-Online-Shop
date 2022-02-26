@@ -15,15 +15,15 @@
             <td><a class="mylink" href="{{ product.get_absolute_url }}">{{ product.name.title }}</a></td>
             <td>{{ product.price }}</td>
             <td><a class="mylink"
-                   href="{% url 'products_category' product.category %}">{{ product.get_category_display }}</a></td>
-            <td><a href="{% url "product_update" product.pk %}" class="mylink"><i
+                   href="{% url 'productsapp:products_category' product.category %}">{{ product.get_category_display }}</a></td>
+            <td><a href="{% url "productsapp:product_update" product.pk %}" class="mylink"><i
                     class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Редактировать"></i></a>
-                &nbsp;<a class="mylink" href="{% url 'product_delete' product.pk %}"><i class="bi bi-trash"
+                &nbsp;<a class="mylink" href="{% url 'productsapp:product_delete' product.pk %}"><i class="bi bi-trash"
                                                                                         data-bs-toggle="tooltip"
                                                                                         data-bs-placement="top"
                                                                                         title="Удалить"></i></a>
-                <form action="{% url 'adding_to_shopping_cart' product.pk %}" method="POST">
+                <form action="{% url 'productsapp:adding_to_shopping_cart' product.pk %}" method="POST">
                     {% csrf_token %}
                     {% if is_paginated %}
                         <input type="hidden" name="next" value="{{ request.path }}?page={{ page_obj.number }}">

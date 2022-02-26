@@ -52,7 +52,7 @@ class ProductUpdate(UpdateView):
 class ProductDelete(DeleteView):
     template_name = 'product/product_delete.html'
     model = Product
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('productsapp:index')
     extra_context = {'title': 'Удаление товара'}
 
 
