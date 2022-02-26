@@ -33,24 +33,6 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
 
 
-class ShoppingCart(models.Model):
-    product = models.ForeignKey('productsapp.Product', on_delete=models.CASCADE, related_name='products',
-                                verbose_name='Товар в корзине')
-    quantity = models.PositiveIntegerField(default=1, verbose_name='Количество товара в корзине')
-
-    @property
-    def amount(self):
-        return self.quantity * self.product.price
-
-    def __str__(self):
-        return f"{self.product.name}: {self.quantity}"
-
-    class Meta:
-        db_table = 'shopping_cart'
-        verbose_name = 'Корзина'
-        verbose_name_plural = 'Корзина'
-
-
 class Order(models.Model):
     customer_name = models.CharField(max_length=40, verbose_name='Имя покупателя')
     phone_number = models.CharField(max_length=15, verbose_name='Номер телефона')

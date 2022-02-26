@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from productsapp.models import Product, ShoppingCart, Order
+from productsapp.models import Product, Order
 
 
 class MembershipInline(admin.TabularInline):
@@ -28,5 +28,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ShoppingCart)
 admin.site.register(Order, OrderAdmin)
