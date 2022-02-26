@@ -3,12 +3,18 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block nav %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "productsapp:product_update" product.pk %}">Редактировать</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'productsapp:product_delete' product.pk %}">Удалить</a>
-    </li>
+    {% if perms.productsapp.change_product %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "productsapp:product_update" product.pk %}">Редактировать</a>
+        </li>
+    {% endif %}
+
+    {% if perms.productsapp.delete_product %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'productsapp:product_delete' product.pk %}">Удалить</a>
+        </li>
+    {% endif %}
+
     <li class="nav-item">
         <a class="nav-link" href="{% url 'productsapp:shopping_cart_view' %}">Корзина</a>
     </li>

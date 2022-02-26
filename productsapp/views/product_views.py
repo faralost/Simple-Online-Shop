@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
@@ -35,25 +36,28 @@ class ProductView(DetailView):
         return context
 
 
-class ProductAddView(CreateView):
+class ProductAddView(PermissionRequiredMixin, CreateView):
     form_class = ProductForm
     template_name = 'product/product_add.html'
     model = Product
     extra_context = {'title': 'Добавление товара'}
+    permission_required = 'productsapp.add_product'
 
 
-class ProductUpdate(UpdateView):
+class ProductUpdate(PermissionRequiredMixin, UpdateView):
     form_class = ProductForm
     template_name = 'product/product_update.html'
     model = Product
     extra_context = {'title': 'Редактирование товара'}
+    permission_required = 'productsapp.change_product'
 
 
-class ProductDelete(DeleteView):
+class ProductDelete(PermissionRequiredMixin, DeleteView):
     template_name = 'product/product_delete.html'
     model = Product
     success_url = reverse_lazy('productsapp:index')
     extra_context = {'title': 'Удаление товара'}
+    permission_required = 'productsapp.delete_product'
 
 
 class ProductsByCategory(ListView):
