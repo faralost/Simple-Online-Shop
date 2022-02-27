@@ -16,6 +16,13 @@ class ProductsIndexView(SearchListView):
     search_fields = ['name__icontains']
     extra_context = {'title': 'Главная'}
 
+    def get(self, request, *args, **kwargs):
+        cart = request.session.get('cart', {})
+        if not cart:
+            request.session['cart'] = {}
+        response = super().get(request, *args, **kwargs)
+        return response
+
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(balance__gt=0)

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
 from django.shortcuts import get_object_or_404, redirect
@@ -11,7 +12,22 @@ from productsapp.models import Product, Order, OrderProduct
 
 
 class ShoppingCartAdd(View):
-    pass
+
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=self.kwargs['pk'])
+        cart = request.session['cart']
+        print(cart)
+        if str(product.pk) not in cart and product.balance > 0:
+            cart[str(product.pk)] = {'qty': 1, 'price': str(product.price)}
+            request.session['cart'] = cart
+            print(cart)
+            messages.success(self.request, f'{product.name} в количестве 1шт добавлен в корзину')
+        else:
+            cart[str(product.pk)]['qty'] += 1
+            request.session['cart'] = cart
+            print(cart)
+        nexttt = request.POST.get('next', '/')
+        return redirect(nexttt)
 
     # def post(self, request, *args, **kwargs):
     #     product = get_object_or_404(Product, pk=kwargs['pk'])
