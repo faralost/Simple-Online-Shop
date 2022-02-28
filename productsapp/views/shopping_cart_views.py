@@ -43,20 +43,27 @@ class ShoppingCartDetailView(CreateView):
     model = Order
     template_name = 'shopping_cart/detail_view.html'
 
-    def form_valid(self, form):
+    def clear_cart(self):
+        del self.request.session['cart']
+        self.request.session.modified = True
 
+    def form_valid(self, form):
         self.object = form.save()
+        self.object.user = self.request.user
         self.get_order()
+        self.clear_cart()
+        messages.success(self.request, 'Ваш заказ был успешно оформлен!')
         return super().form_valid(form)
 
     def get_order(self):
+        self.cart = self.request.session['cart']
         for key, value in self.cart.items():
             order_list = OrderProduct.objects.create(order_id=self.object.pk, product_id=int(key),
                                                      quantity=value['qty'])
         return order_list
 
     def get_success_url(self):
-        return reverse('productsapp:shopping_cart_view')
+        return reverse('productsapp:user_orders_view')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,7 +74,7 @@ class ShoppingCartDetailView(CreateView):
         return context
 
     def get_products(self):
-        self.cart = self.request.session['cart']
+        self.cart = self.request.session.get('cart')
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         for product in products:
@@ -90,11 +97,13 @@ class ShoppingCartDeleteView(View):
             self.request.session['cart'] = cart
             product.balance += 1
             product.save()
+            messages.warning(self.request, f'{product.name} полностью удален из корзины')
         else:
             cart[str(product.pk)]['qty'] -= 1
             self.request.session['cart'] = cart
             product.balance += 1
             product.save()
+            messages.warning(self.request, f'{product.name} в количестве 1шт удален из корзины')
         return redirect('productsapp:shopping_cart_view')
 
 
@@ -104,4 +113,4 @@ class UserOrdersView(LoginRequiredMixin, ListView):
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user).order_by('-created_at')
