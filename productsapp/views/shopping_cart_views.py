@@ -15,34 +15,30 @@ class ShoppingCartAdd(View):
 
     def post(self, request, *args, **kwargs):
         product = get_object_or_404(Product, pk=self.kwargs['pk'])
-        cart = request.session['cart']
-        print(cart)
+        cart = self.request.session['cart']
         if str(product.pk) not in cart and product.balance > 0:
             cart[str(product.pk)] = {'qty': 1, 'price': str(product.price)}
-            request.session['cart'] = cart
-            print(cart)
+            self.request.session['cart'] = cart
+            product.balance -= 1
+            product.save()
             messages.success(self.request, f'{product.name} в количестве 1шт добавлен в корзину')
         else:
-            cart[str(product.pk)]['qty'] += 1
-            request.session['cart'] = cart
-            print(cart)
-        nexttt = request.POST.get('next', '/')
+            if product.balance > 0:
+                cart[str(product.pk)]['qty'] += 1
+                self.request.session['cart'] = cart
+                product.balance -= 1
+                product.save()
+                messages.success(self.request, f"всего {product.name} в корзине теперь {cart[str(product.pk)]['qty']}")
+            else:
+                messages.error(self.request, f'{product.name} не осталось (:')
+        print(cart)
+        nexttt = self.request.POST.get('next', '/')
         return redirect(nexttt)
-
-    # def post(self, request, *args, **kwargs):
-    #     product = get_object_or_404(Product, pk=kwargs['pk'])
-    #     shopping_cart = ShoppingCart.objects.all()
-    #     if not shopping_cart.filter(product_id=product.pk) and product.balance > 0:
-    #         shopping_cart.create(product_id=product.pk)
-    #     elif shopping_cart.filter(product_id=product.pk) and shopping_cart.get(
-    #             product_id=product.pk).quantity < product.balance:
-    #         shopping_cart.filter(product_id=product.pk).update(quantity=F('quantity') + 1)
-    #     nexttt = request.POST.get('next', '/')
-    #     return redirect(nexttt)
 
 
 class ShoppingCartDetailView(CreateView):
-    pass
+    template_name = 'shopping_cart/detail_view.html'
+
     # form_class = OrderForm
     # model = Order
     # template_name = 'shopping_cart/detail_view.html'
