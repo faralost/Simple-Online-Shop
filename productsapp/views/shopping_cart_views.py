@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
@@ -37,7 +39,35 @@ class ShoppingCartAdd(View):
 
 
 class ShoppingCartDetailView(CreateView):
+    form_class = OrderForm
+    model = Order
     template_name = 'shopping_cart/detail_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Корзина'
+        context['categories'] = Product.CATEGORY_CHOICES
+        context['cart'] = self.get_products()
+        context['total'] = self.get_total()
+        return context
+
+    def get_products(self):
+        self.cart = self.request.session['cart']
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
+        for product in products:
+            self.cart[str(product.id)]['product'] = product
+        for item in self.cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['qty']
+        print(self.cart)
+        return self.cart
+
+    def get_total(self):
+        return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
+
+    # def get_total_price(self):
+    #     return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     # form_class = OrderForm
     # model = Order

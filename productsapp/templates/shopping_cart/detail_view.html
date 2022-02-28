@@ -6,8 +6,10 @@
     {% include 'partial/nav.html' %}
 {% endblock %}
 
+
+
 {% block content %}
-    {% if shopping_cart %}
+    {% if cart %}
     <div class="mt-3">
         <table class="table table-success table-striped">
             <thead>
@@ -20,32 +22,32 @@
             </tr>
             </thead>
             <tbody>
-            {% for item in shopping_cart %}
+            {% for key, value in cart.items %}
                 <tr>
-                    <th scope="row">{{ item.product.name }}</th>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.product.price|floatformat:2 }}</td>
-                    <td>{{ item.amount|floatformat:2 }}</td>
-                    <td>
-                        <form action="{% url 'productsapp:shopping_cart_delete_view' item.pk %}" method="GET">
-                            <button type="submit" class="btn btn-info">Удалить</button>
-                            <br>
-                        </form>
-                    </td>
+                    <th scope="row">{{ value.product }}</th>
+                    <td>{{ value.qty }}</td>
+                    <td>{{ value.price|floatformat:2 }}</td>
+                    <td>{{ value.total_price|floatformat:2 }}</td>
+{#                    <td>#}
+{#                        <form action="{% url 'productsapp:shopping_cart_delete_view' item.pk %}" method="GET">#}
+{#                            <button type="submit" class="btn btn-info">Удалить</button>#}
+{#                            <br>#}
+{#                        </form>#}
+{#                    </td>#}
                 </tr>
             {% endfor %}
             <tr class="table-danger">
-                <th scope="row">ИТОГО: {{ total.sum|floatformat:2 }} сом</th>
+                <th scope="row">ИТОГО: {{ total|floatformat:2 }} сом</th>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="container">
-        <form method="post">
-            {% include 'partial/form.html' with button_text='Заказать' %}
-        </form>
-    </div>
+{#    <div class="container">#}
+{#        <form method="post">#}
+{#            {% include 'partial/form.html' with button_text='Заказать' %}#}
+{#        </form>#}
+{#    </div>#}
         {% else %}
         <br>
         <h3>Корзина пуста</h3>
