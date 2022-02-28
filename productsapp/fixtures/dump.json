@@ -6,7 +6,7 @@
     "name": "sdasdasda",
     "description": "dasdasd",
     "category": "other",
-    "balance": 3,
+    "balance": 34,
     "price": "123.32"
   }
 },
@@ -17,7 +17,7 @@
     "name": "sdfssdsds",
     "description": "",
     "category": "other",
-    "balance": 1,
+    "balance": 2,
     "price": "12.00"
   }
 },
@@ -28,7 +28,7 @@
     "name": "something",
     "description": "",
     "category": "other",
-    "balance": 20,
+    "balance": 15,
     "price": "123.23"
   }
 },
@@ -72,7 +72,7 @@
     "name": "drink1",
     "description": "drink1",
     "category": "drinks",
-    "balance": 13,
+    "balance": 9,
     "price": "15.50"
   }
 },
@@ -83,7 +83,7 @@
     "name": "drink2",
     "description": "",
     "category": "drinks",
-    "balance": 24,
+    "balance": 16,
     "price": "25.60"
   }
 },
@@ -94,7 +94,7 @@
     "name": "drink3",
     "description": "drink3",
     "category": "drinks",
-    "balance": 36,
+    "balance": 31,
     "price": "36.90"
   }
 },
@@ -105,7 +105,7 @@
     "name": "food 1",
     "description": "food 1",
     "category": "food",
-    "balance": 42,
+    "balance": 41,
     "price": "45.00"
   }
 },
@@ -127,7 +127,7 @@
     "name": "food 3",
     "description": "doof sfsd fad fad fsdf",
     "category": "food",
-    "balance": 66,
+    "balance": 62,
     "price": "66.00"
   }
 },
@@ -138,7 +138,7 @@
     "name": "book1",
     "description": "book1",
     "category": "books",
-    "balance": 9,
+    "balance": 0,
     "price": "90.00"
   }
 },
@@ -149,7 +149,7 @@
     "name": "book 2",
     "description": "book 2",
     "category": "books",
-    "balance": 2,
+    "balance": 3,
     "price": "100.00"
   }
 },
@@ -160,7 +160,7 @@
     "name": "book 3book",
     "description": "book 3",
     "category": "books",
-    "balance": 3,
+    "balance": 51,
     "price": "110.00"
   }
 },
@@ -171,7 +171,7 @@
     "name": "clothes 1",
     "description": "clothes 1",
     "category": "clothes",
-    "balance": 9,
+    "balance": 0,
     "price": "1300.00"
   }
 },
@@ -182,7 +182,7 @@
     "name": "clothes 2",
     "description": "",
     "category": "clothes",
-    "balance": 12,
+    "balance": 5,
     "price": "1499.00"
   }
 },
@@ -193,7 +193,7 @@
     "name": "clothes 3",
     "description": "clothes 3",
     "category": "clothes",
-    "balance": 15,
+    "balance": 12,
     "price": "1599.99"
   }
 },
@@ -215,7 +215,7 @@
     "name": "qqweqweqw",
     "description": "qweqweqw",
     "category": "books",
-    "balance": 2,
+    "balance": 0,
     "price": "12.00"
   }
 },
@@ -226,32 +226,8 @@
     "name": "test one",
     "description": "",
     "category": "books",
-    "balance": 1,
+    "balance": 0,
     "price": "12.00"
-  }
-},
-{
-  "model": "productsapp.shoppingcart",
-  "pk": 39,
-  "fields": {
-    "product": 32,
-    "quantity": 1
-  }
-},
-{
-  "model": "productsapp.shoppingcart",
-  "pk": 44,
-  "fields": {
-    "product": 39,
-    "quantity": 2
-  }
-},
-{
-  "model": "productsapp.shoppingcart",
-  "pk": 48,
-  "fields": {
-    "product": 34,
-    "quantity": 4
   }
 },
 {
@@ -261,7 +237,8 @@
     "customer_name": "naruto",
     "phone_number": "+996702482325",
     "address": "Hidden Leaf Village",
-    "created_at": "2022-02-06T10:59:32.815Z"
+    "created_at": "2022-02-06T10:59:32.815Z",
+    "user": 1
   }
 },
 {
@@ -271,7 +248,8 @@
     "customer_name": "satoru godjo",
     "phone_number": "+996702482325",
     "address": "jujutsu 89",
-    "created_at": "2022-02-06T11:10:47.329Z"
+    "created_at": "2022-02-06T11:10:47.329Z",
+    "user": null
   }
 },
 {
@@ -281,7 +259,8 @@
     "customer_name": "zenitsu",
     "phone_number": "+996555223344",
     "address": "agatsuma 46",
-    "created_at": "2022-02-06T11:43:40.446Z"
+    "created_at": "2022-02-06T11:43:40.446Z",
+    "user": 2
   }
 },
 {
@@ -291,7 +270,96 @@
     "customer_name": "Tandjiro Camado",
     "phone_number": "+996500669966",
     "address": "Demon Slayer",
-    "created_at": "2022-02-06T12:09:13.209Z"
+    "created_at": "2022-02-06T12:09:13.209Z",
+    "user": 2
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 21,
+  "fields": {
+    "customer_name": "lostik",
+    "phone_number": "+996777222444",
+    "address": "lost adres",
+    "created_at": "2022-02-07T13:06:13.134Z",
+    "user": 3
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 22,
+  "fields": {
+    "customer_name": "faralost",
+    "phone_number": "31231231",
+    "address": "dasfasff",
+    "created_at": "2022-02-26T06:21:25.432Z",
+    "user": 2
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 29,
+  "fields": {
+    "customer_name": "test user",
+    "phone_number": "124312412",
+    "address": "dasdasd",
+    "created_at": "2022-02-26T09:56:08.298Z",
+    "user": 3
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 30,
+  "fields": {
+    "customer_name": "qwerty",
+    "phone_number": "123456",
+    "address": "asdfg",
+    "created_at": "2022-02-28T10:26:55.341Z",
+    "user": null
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 31,
+  "fields": {
+    "customer_name": "qwerty",
+    "phone_number": "123456",
+    "address": "asdfg",
+    "created_at": "2022-02-28T10:27:44.233Z",
+    "user": 3
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 32,
+  "fields": {
+    "customer_name": "12345",
+    "phone_number": "12345",
+    "address": "12345",
+    "created_at": "2022-02-28T10:31:23.410Z",
+    "user": 3
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 33,
+  "fields": {
+    "customer_name": "555555",
+    "phone_number": "55555",
+    "address": "55555",
+    "created_at": "2022-02-28T10:31:52.020Z",
+    "user": 3
+  }
+},
+{
+  "model": "productsapp.order",
+  "pk": 34,
+  "fields": {
+    "customer_name": "щщщщщщщщ",
+    "phone_number": "1231231231",
+    "address": "зззззззззз",
+    "created_at": "2022-02-28T10:39:29.104Z",
+    "user": 3
   }
 },
 {
@@ -427,6 +495,258 @@
     "product": 24,
     "order": 20,
     "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 43,
+  "fields": {
+    "product": 32,
+    "order": 21,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 44,
+  "fields": {
+    "product": 39,
+    "order": 21,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 45,
+  "fields": {
+    "product": 34,
+    "order": 21,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 46,
+  "fields": {
+    "product": 34,
+    "order": 22,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 47,
+  "fields": {
+    "product": 36,
+    "order": 22,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 48,
+  "fields": {
+    "product": 25,
+    "order": 22,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 49,
+  "fields": {
+    "product": 32,
+    "order": 22,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 50,
+  "fields": {
+    "product": 33,
+    "order": 22,
+    "quantity": 3
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 51,
+  "fields": {
+    "product": 40,
+    "order": 29,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 52,
+  "fields": {
+    "product": 34,
+    "order": 29,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 53,
+  "fields": {
+    "product": 25,
+    "order": 29,
+    "quantity": 1
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 54,
+  "fields": {
+    "product": 26,
+    "order": 31,
+    "quantity": 7
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 55,
+  "fields": {
+    "product": 35,
+    "order": 31,
+    "quantity": 4
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 56,
+  "fields": {
+    "product": 21,
+    "order": 31,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 57,
+  "fields": {
+    "product": 30,
+    "order": 31,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 58,
+  "fields": {
+    "product": 32,
+    "order": 31,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 59,
+  "fields": {
+    "product": 26,
+    "order": 32,
+    "quantity": 7
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 60,
+  "fields": {
+    "product": 35,
+    "order": 32,
+    "quantity": 4
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 61,
+  "fields": {
+    "product": 21,
+    "order": 32,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 62,
+  "fields": {
+    "product": 30,
+    "order": 32,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 63,
+  "fields": {
+    "product": 32,
+    "order": 32,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 64,
+  "fields": {
+    "product": 26,
+    "order": 33,
+    "quantity": 7
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 65,
+  "fields": {
+    "product": 35,
+    "order": 33,
+    "quantity": 4
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 66,
+  "fields": {
+    "product": 21,
+    "order": 33,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 67,
+  "fields": {
+    "product": 30,
+    "order": 33,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 68,
+  "fields": {
+    "product": 32,
+    "order": 33,
+    "quantity": 5
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 69,
+  "fields": {
+    "product": 35,
+    "order": 34,
+    "quantity": 2
+  }
+},
+{
+  "model": "productsapp.orderproduct",
+  "pk": 70,
+  "fields": {
+    "product": 27,
+    "order": 34,
+    "quantity": 2
   }
 }
 ]
