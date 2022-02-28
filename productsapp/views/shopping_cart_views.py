@@ -43,6 +43,21 @@ class ShoppingCartDetailView(CreateView):
     model = Order
     template_name = 'shopping_cart/detail_view.html'
 
+    def form_valid(self, form):
+
+        self.object = form.save()
+        self.get_order()
+        return super().form_valid(form)
+
+    def get_order(self):
+        for key, value in self.cart.items():
+            order_list = OrderProduct.objects.create(order_id=self.object.pk, product_id=int(key),
+                                                     quantity=value['qty'])
+        return order_list
+
+    def get_success_url(self):
+        return reverse('productsapp:shopping_cart_view')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Корзина'
