@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView
 from django.db.models import F, Sum
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
@@ -49,7 +50,9 @@ class ShoppingCartDetailView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        self.object.user = self.request.user
+        self.object.user = None
+        if self.request.user.is_authenticated:
+            self.object.user = self.request.user
         self.get_order()
         self.clear_cart()
         messages.success(self.request, 'Ваш заказ был успешно оформлен!')
@@ -60,7 +63,6 @@ class ShoppingCartDetailView(CreateView):
         for key, value in self.cart.items():
             order_list = OrderProduct.objects.create(order_id=self.object.pk, product_id=int(key),
                                                      quantity=value['qty'])
-        return order_list
 
     def get_success_url(self):
         return reverse('productsapp:user_orders_view')
@@ -114,3 +116,15 @@ class UserOrdersView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user).order_by('-created_at')
+
+
+class LogoutClearView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        cart = request.session.get('cart')
+        if cart:
+            for product_id, value in cart.items():
+                product = Product.objects.get(pk=product_id)
+                product.balance += value['qty']
+                product.save()
+            del request.session['cart']
+        return super().dispatch(request, *args, **kwargs)

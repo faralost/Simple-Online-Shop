@@ -16,13 +16,18 @@
             <td>{{ product.price }}</td>
             <td><a class="mylink"
                    href="{% url 'productsapp:products_category' product.category %}">{{ product.get_category_display }}</a></td>
-            <td><a href="{% url "productsapp:product_update" product.pk %}" class="mylink"><i
+            <td>
+                {% if perms.productsapp.change_product %}
+                <a href="{% url "productsapp:product_update" product.pk %}" class="mylink"><i
                     class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Редактировать"></i></a>
+                {% endif %}
+                {% if perms.productsapp.delete_product %}
                 &nbsp;<a class="mylink" href="{% url 'productsapp:product_delete' product.pk %}"><i class="bi bi-trash"
                                                                                         data-bs-toggle="tooltip"
                                                                                         data-bs-placement="top"
                                                                                         title="Удалить"></i></a>
+                {% endif %}
                 <form action="{% url 'productsapp:adding_to_shopping_cart' product.pk %}" method="POST">
                     {% csrf_token %}
                     {% if is_paginated %}
