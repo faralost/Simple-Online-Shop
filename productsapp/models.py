@@ -39,7 +39,7 @@ class Order(models.Model):
     address = models.CharField(max_length=100, verbose_name='Адрес')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     products = models.ManyToManyField("productsapp.Product", related_name="orders", through="productsapp.OrderProduct",
-                                      through_fields=("order", "product"))
+                                      through_fields=("order", "product"), blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', verbose_name='Пользователь',
                              null=True, blank=True)
 
@@ -60,4 +60,4 @@ class OrderProduct(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Количество заказа')
 
     def __str__(self):
-        return f"{self.product} | {self.order}: {self.quantity}"
+        return f"{self.product} в количестве: {self.quantity}"
