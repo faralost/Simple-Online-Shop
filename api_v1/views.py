@@ -1,6 +1,8 @@
 from rest_framework import viewsets, mixins
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.permissions import SAFE_METHODS, IsAdminUser, AllowAny
+from rest_framework.permissions import SAFE_METHODS, IsAdminUser, AllowAny, IsAuthenticated
 
 from api_v1.serializers import ProductSerializer, OrderSerializer, UserSerializer
 from productsapp.models import Product, Order, User
@@ -38,3 +40,13 @@ class OrderViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.Crea
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            user.auth_token.delete()
+        return Response({'status': 'ok'})
