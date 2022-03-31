@@ -18,10 +18,15 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class OrderProductSerializer(serializers.ModelSerializer):
+    total_price = serializers.SerializerMethodField(read_only=True)
+
+    @staticmethod
+    def get_total_price(obj):
+        return obj.quantity * obj.product.price
 
     class Meta:
         model = OrderProduct
-        fields = ['product', 'quantity']
+        fields = ['product', 'quantity', 'total_price']
 
 
 class OrderSerializer(serializers.ModelSerializer):

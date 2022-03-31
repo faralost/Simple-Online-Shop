@@ -42,11 +42,11 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
 
-class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, *args, **kwargs):
-        user = request.user
-        if user.is_authenticated:
-            user.auth_token.delete()
-        return Response({'status': 'ok'})
+# class LogoutView(APIView):
+#     permission_classes = [IsAuthenticated]
+#
+#     def post(self, request, *args, **kwargs):
+#         user = request.user
+#         if user.is_authenticated:
+#             user.auth_token.delete()
+#         return Response({'status': 'ok'})
