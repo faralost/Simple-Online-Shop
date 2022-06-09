@@ -20,9 +20,8 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderProductSerializer(serializers.ModelSerializer):
     total_price = serializers.SerializerMethodField(read_only=True)
 
-    @staticmethod
-    def get_total_price(obj):
-        return obj.quantity * obj.product.price
+    def get_total_price(self, order_product):
+        return order_product.quantity * order_product.product.price
 
     class Meta:
         model = OrderProduct
@@ -30,7 +29,7 @@ class OrderProductSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    order_products = OrderProductSerializer(many=True)
+    order_products = OrderProductSerializer(many=True, read_only=True)
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
